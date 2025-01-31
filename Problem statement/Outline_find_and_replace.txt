@@ -1,0 +1,43 @@
+import csv
+import re
+import shutil
+from tempfile import NamedTemporaryFile
+
+# Filepaths
+output_file = 'replacement_sample_data.csv'  # The file where the modified data will be stored
+input_file = 'sample_data.csv'               # The file containing the original data
+replacement_file = 'Replacement_words.csv'   # The file containing original and replacement words
+
+# Create a temporary file to write the changes before moving it to the final location
+tempfile = NamedTemporaryFile(mode='w', delete=False, newline='', encoding='utf-8')
+
+def load_replacements(replacement_file):
+    """
+    Load word replacements from a CSV file into a dictionary.
+    The right column contains words to be replaced by the corresponding words in the left column.
+    """
+    replacements = {}
+    with open(replacement_file, 'r', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in reader:
+            original, replacement = row[1].lower(), row[0].lower()  # Ensure lowercase comparison
+            replacements[original] = replacement
+    return replacements
+
+def replace_words_in_text(text, replacements):
+    """
+    Replace words in the input text according to the replacements dictionary.
+    """
+
+def process_file(input_file, output_file, replacements):
+    """
+    Read the input file, perform word replacements, and write the modified content to the output file.
+    """
+    # Replace the original file with the modified file
+
+    # Load the replacement words from the replacement CSV file
+    
+    # Process the input file and apply the replacements
+
+if __name__ == "__main__":
+    main()

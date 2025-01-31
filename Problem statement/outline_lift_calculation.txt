@@ -1,0 +1,87 @@
+import csv
+import re
+import string
+import csv
+import re
+import string
+import decimal
+from collections import defaultdict
+import pandas as pd
+import io
+import nltk
+from nltk.corpus import stopwords
+from itertools import combinations
+
+# Download and set up stopwords from the NLTK package
+
+# Initialize global variables and data structures
+df_lift = pd.DataFrame(columns=['word1', 'word2', 'lift_value'])  # To store lift values
+word_frequency = {}  # Dictionary to store word frequency in posts
+word_pair_frequency = defaultdict(dict)  # Dictionary to store word pair co-occurrence frequency
+results_dict = {}  # Dictionary to store results with lift values for word pairs
+file_length = 0  # Number of rows in the input file
+itr = 0  # Row iterator for the lift DataFrame
+
+# File paths
+input_file = 'sample_data.csv'  # Input data file
+pair_keys_file = 'edmunds_pair_keys.txt'  # File containing the words to calculate lift
+output_lift_values = 'Lift_Values.csv'  # Output file for lift values
+output_lift_matrix = 'Lift_Matrix.csv'  # Output file for lift matrix
+
+# Function to clean and tokenize text (removes punctuation and stopwords)
+def clean_text(text):
+    """
+    Cleans a given text by removing punctuation, converting it to lowercase,
+    and tokenizing it, ignoring any stopwords.
+    """
+
+# Step 1: Load the words from the edmunds_pair_keys.txt file and generate all pairs
+def load_word_pairs(filename):
+    """
+    Loads words from a file where words are comma-separated in each row.
+    Returns a list of all possible word pairs for each row.
+    """
+# Step 2: Process the input CSV file to extract posts and clean the text
+def process_input_file(input_filename):
+    """
+    Processes the input CSV file to extract and clean posts. Each post is tokenized,
+    cleaned of punctuation and stopwords, and stored in a list.
+    """
+
+# Step 3: Calculate word frequencies and word pair co-occurrences
+def calculate_frequencies(posts):
+    """
+    Calculates the frequency of individual words and word pairs within the posts.
+    Updates the global word_frequency and word_pair_frequency dictionaries.
+    """
+    global word_frequency, word_pair_frequency
+
+    for post in posts:
+        unique_words = set(post)  # Track unique words in the post to avoid double counting
+        # Count word frequencies
+        for word in unique_words:
+            word_frequency[word] = word_frequency.get(word, 0) + 1
+
+        # Count word pair co-occurrences
+        for word1 in unique_words:
+            for word2 in unique_words:
+                if word1 != word2:  # Ensure they are different words
+                    word_pair_frequency[word1][word2] = word_pair_frequency[word1].get(word2, 0) + 1
+
+# Step 4: Calculate the lift between word pairs
+def calculate_lift(word_pairs):
+    """
+    Calculates the lift between word pairs using the formula:
+    Lift(word1, word2) = P(word1 AND word2) / (P(word1) * P(word2))
+    Lift is written to the lift values CSV and stored in a DataFrame for further processing.
+    """
+
+# Step 5: Write lift values and matrix to CSV
+def save_results():
+    """
+    Writes the calculated lift values to a CSV file and also generates a lift matrix,
+    saving it to another CSV.
+    """
+# Run the script
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,66 @@
+import csv
+import re
+import string
+from collections import defaultdict
+from nltk.corpus import stopwords
+import nltk
+import io
+
+# Download stopwords from the NLTK package
+# Initialize English stopwords
+# Input and output filenames 
+input_filename = 'sample_data.csv'  # Input file
+final_filename = 'final.csv'  # Intermediate file without the column header
+word_freq_output = 'word_freq.csv'  # Output file for word frequencies
+
+# Function to clean and tokenize sentences
+def clean_and_tokenize(sentence):
+    """
+    Cleans a given sentence by removing punctuation and stopwords, converting text to lowercase,
+    and tokenizing the remaining words.
+    """
+    # Remove punctuation and convert text to lowercase
+    sentence = re.sub(f'[{re.escape(string.punctuation)}]', '', sentence.lower())
+
+    # Tokenize and remove stopwords
+    return [word for word in sentence.split() if word not in stop_words]
+
+# Step 1: Remove header from the input CSV and create a new file without it
+def remove_header(input_file, output_file):
+    """
+    Reads the input CSV file, removes the header, and writes the remaining rows
+    into a new output file.
+    """
+ 
+# Step 2: Extract and clean sentences from the text
+def extract_sentences(file):
+    """
+    Extracts text data from the third column of the CSV file, splits it into sentences,
+    and cleans each sentence by removing punctuation and stopwords.
+    """
+            # Split the text into sentences based on punctuation (.?!)
+            # Clean and tokenize each sentence
+            for sentence in sentences:
+                cleaned_tokens = clean_and_tokenize(sentence)
+                if cleaned_tokens:  # Avoid adding empty sentences
+                    sentences_clean.append(cleaned_tokens)
+
+    return sentences_clean
+
+# Step 3: Calculate word frequencies
+def calculate_word_frequencies(sentences):
+    """
+    Calculates the frequency of each word in the given list of cleaned sentences.
+    """
+    
+# Step 4: Write word frequencies to CSV
+def write_word_frequencies(word_freq, output_file):
+    """
+    Writes the word frequencies to the specified CSV file.
+    """
+    
+    print(f"Word frequencies written to {word_freq}")
+
+# Run the main function
+if __name__ == "__main__":
+    main()
